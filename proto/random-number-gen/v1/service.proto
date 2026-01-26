@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package random_number_gen;
+
+option go_package = "proto/random-number-gen/v1;random_number_gen";
+
+message GenerateIntRequest {
+  int64 LowBorder = 1;
+  int64 HighBorder = 2;
+  reserved 3;
+  optional int32 flag = 4;
+}
+
+message GenerateIntResponse {
+  int64 Result = 1;
+}
+
+service RandomNumberGen {
+  rpc GenerateInt(GenerateIntRequest) returns (GenerateIntResponse);
+}

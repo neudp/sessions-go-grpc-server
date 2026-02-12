@@ -2,6 +2,7 @@ package cli
 
 import (
 	"context"
+	"go-grpc-server/internal/integration/common"
 	grpc2 "go-grpc-server/internal/integration/grpc"
 	"go-grpc-server/internal/integration/random"
 	random_number_gen "go-grpc-server/internal/proto/random-number-gen/v1"
@@ -14,16 +15,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
-)
-
-const (
-	Byte int = 1 << (10 * iota)
-	Kilobyte
-	Megabyte
-	Gigabyte
-	Terabyte
-	Petabyte
-	Exabyte
 )
 
 func NewRunGrpcCommand() *cobra.Command {
@@ -43,8 +34,8 @@ func NewRunGrpcCommand() *cobra.Command {
 					Time:                  10 * time.Second, // How frequently client should send ping to be alive
 					Timeout:               30 * time.Second, // How long server waits for ping ack
 				}),
-				grpc.MaxRecvMsgSize(2*Megabyte), // Max receive message size
-				grpc.MaxSendMsgSize(2*Megabyte), // Max send message size
+				grpc.MaxRecvMsgSize(2*common.Megabyte), // Max receive message size
+				grpc.MaxSendMsgSize(2*common.Megabyte), // Max send message size
 			)
 
 			// OKM religion

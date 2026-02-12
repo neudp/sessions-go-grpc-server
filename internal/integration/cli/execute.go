@@ -10,6 +10,7 @@ func Execute() error {
 
 	rootCmd.AddCommand(
 		NewRunGrpcCommand(),
+		NewCallGenerateIntCommand(),
 	)
 
 	return rootCmd.Execute()
